@@ -1,0 +1,44 @@
+# Water Potability — XGBoost
+
+## Descripción
+Entrenamiento y evaluación de un modelo XGBoost para clasificar la potabilidad del agua. Los experimentos se registran mediante MLflow Tracking.
+
+## Dependencias
+Las dependencias y sus versiones están especificadas en `requirements.txt`.
+
+Para instalarlas:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+## Ejecución
+Ejecutar el modelo con los hiperparámetros predeterminados:
+
+```bash
+python train.py
+```
+
+También es posible modificar `n_estimators`, `max_depth`, `learning_rate` y `seed` desde la terminal.
+
+Ejemplo:
+
+```bash
+python train.py --n_estimators 200 --max_depth 6 --learning_rate 0.05 --seed 42
+```
+
+## Reproducibilidad
+Se utiliza la semilla aleatoria 42 por defecto, tanto para la división de los datos como para el entrenamiento de XGBoost.
+
+Se comprueba la reproducibilidad ejecutando dos veces la misma configuración y comparando las métricas registradas en MLflow.
+
+## MLflow
+Para visualizar los experimentos:
+
+```bash
+mlflow ui --backend-store-uri sqlite:///mlflow.db --port 5000
+```
+
+Abrir `http://localhost:5000` y seleccionar el experimento `Water_Potability_XGBoost`.
